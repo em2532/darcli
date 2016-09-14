@@ -2,8 +2,8 @@
 title: "Title to this website"
 name: "Website name"
 keywords: "Key, words, about, this, website"
-baseurl: "/darcli"
-url: "http://website.com"
+baseurl: ""
+url: "http://em2532.github.io"
 description: "Website description"
 cover: "/assets/img/cover.svg"
 fanpage_id: ""
@@ -18,9 +18,9 @@ ssl: false # It will redirect to https
 # facebook: lampiaosec # Rigth
 # facebook: facebook.com/lampiaosec # Wrong
 disqus: test
-twitter: 
-facebook: 
-github: 
+twitter:
+facebook:
+github:
 google:
 
 # Build settings
