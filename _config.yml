@@ -2,9 +2,9 @@
 title: "Title to this website"
 name: "Website name"
 keywords: "Key, words, about, this, website"
-baseurl: "/darcli"
-url: "http://website.com"
-description: "Website description"
+baseurl: "/blog"
+url: "http://em2532.github.io"
+description: "Blog"
 cover: "/assets/img/cover.svg"
 fanpage_id: ""
 
