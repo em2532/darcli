@@ -16,8 +16,16 @@ authors:
 * toc
 {:toc}
 
+
 ## Advance Java Overview
  This overview is designed with the intention of briefly reviewing some core aspects of Java that might be relevant to a java programming interview.
+
+## Java's Architecture
+ Java is divided into separate components that help it achieve platform independence, here are those components:
+
+
+### Java's Virtual Machine
+
 
 ## Effect of keeping a constructor private (inheritance)
  By keeping a constructor private, the class cannot be inherited from. It forces the sub-class to explicitly make a call to non-private super class constructor. Places you might consider using a private constructor:
