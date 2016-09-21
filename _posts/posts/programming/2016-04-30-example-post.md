@@ -14,6 +14,8 @@ authors:
     - author2
 ---
 
+This is an example post 
+
 # Header
 
 # Header 1

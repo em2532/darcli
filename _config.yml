@@ -1,10 +1,10 @@
 # Site specific settings
-title: "Title to this website"
-name: "Website name"
-keywords: "Key, words, about, this, website"
+title: "Edgar Montano's Developer Blog"
+name: "Edgar Montano's Developer Blog"
+keywords: "edgar montano, edgar, montano, developer, blog, tech blog, programming blog, git, gud, git gud, git blog, good blog"
 baseurl: ""
 url: "http://em2532.github.io"
-description: "Website description"
+description: "Get the lastest tips and tricks on programming and development techniques. Your personal guide to getting gud."
 cover: "/assets/img/cover.svg"
 fanpage_id: ""
 
@@ -20,7 +20,7 @@ ssl: false # It will redirect to https
 disqus: test
 twitter:
 facebook:
-github:
+github: em2532
 google:
 
 # Build settings
