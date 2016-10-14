@@ -264,6 +264,24 @@ Most useful collection framework to know according to Cracking the Coding Interv
 * _HashMap_  hash table implementation of a Map interface (sometimes referred to as dictionary)
 
 
+### ArrayList vs Vector
+
+ArrayList
+
+* not synchronized
+* increments 50% of current array size every time it needs to reallocate
+* non-legacy class
+* fast because non-synchronized
+* uses iterator interface to traverse elements
+
+Vector
+
+* synchronized
+* increments 100% meaning it doubles array size when it needs to reallocate
+* vectory is legacy class
+* slow b/c of synchronized
+* uses enumeration interface to traverse elements. (it could also use iterator however)
+
 ## Iterators
 
 Iterators is an interface that provides the functionality of iterating the elements in the forward direction. Methods included in the iterator interface are:
@@ -283,9 +301,54 @@ Java has a variety of design patterns. Good references on design patterns is _De
 
 A singleton is a class that allows only one instance to be created. This is useful for designing a point of entry to a third party, such as a database or a web service, that could be easily configurable in one location. A singleton pattern can lead to a bunch of issues. It can be quite difficult to test in isolation. Singletons can work best in specialized applications such as a GUI when you know you will not have many concurrent users. Singletons are often the source of bottlenecks, since only one instance can be created, each thread must wait on this singleton to perform its operations.
 
+
+## Java Reflection API
+
+Is a process of examining or modifying the run time behavior of a class. Reflections are useful in JUnit, which looks through your classes for methods tagged with the @Test annotation, and will then call them when running a unit test.  API primairly uses:
+
+* IDE  (eclipse, netbeans)
+* Debugger
+* Test tools  
+
+### java.lang.Class
+
+ performs two tasks:
+
+ * provides methods to get the metadata of a class at run time  (getName())
+ * provides methods to examine and change the run time behavior of a class.
+
+
+## Object Oriented Programming
+
+### Object
+
+An element that has a state and behavior is an object.
+
+### class
+
+Classes are simply collections of objects.
+
+### Inheritance
+
+When one object acquires all the properties and behaviors of a parent object. This is a Fundemental aspect of code reusability.
+
+### Polymorphism
+
+When one task is performed different ways.
+
+### Abstraction
+
+Hiding internal details and showing functionlity.
+
+
+### Encapsulation
+
+Binding code and data together into a single unit.
+
 ## Sources
 Below are a list of sources that have been used.
 [StackOverflow:purpose of final, finally, finalize](http://stackoverflow.com/questions/7814688/in-java-what-purpose-do-the-keywords-final-finally-and-finalize-fulfil) ,
 [CTCI (Java Chapter)](https://www.amazon.com/Cracking-Coding-Interview-Programming-Questions/dp/098478280X),
 [Mindview:Java Generics](http://web.archive.org/web/20090323084529/http://www.mindview.net/WebLog/log-0061),
 [StackOverflow:What is reflections](http://stackoverflow.com/questions/37628/what-is-reflection-and-why-is-it-useful)
+[Javatpoint reflections](http://www.javatpoint.com/java-reflection)
