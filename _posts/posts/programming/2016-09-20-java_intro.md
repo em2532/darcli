@@ -628,11 +628,11 @@ method binarySearch(list l, element e):
     return binarySearch(elements between l(l.size / 2 +1) and l(l.size))
 ```
 
-### Design Patterns
+## Design Patterns
 
 Software design patterns use one or more objets together to solve a common problem.
 
-#### Builder Pattern
+### Builder Pattern
 
 Necessary when you create an object that has many fields. Example: Pet object: Animal type, pet name, owner name, address, dob, color, size, etc.
 
@@ -641,7 +641,7 @@ One approach would be to not use a constructor at all, simply use setter methods
 With a builder pattern you can mitigate this problem. You can create a compannion object, called a builder,  which will construct legal objects.
 
 
-#### Strategy Pattern
+### Strategy Pattern
 
 Enables you to easily swap specific implementation details of an algorithm without requiring a complete rewrite, such as swapping during runtime.
 
@@ -651,7 +651,7 @@ An example of this interface is a logger implementation that is not concerned ab
 
 Using this Strategy allows you to defer decisions about which implementation to use until run time.
 
-#### Template Pattern
+### Template Pattern
 
 Is used to defer or delegate some or all steps of an algorithm to a subclass.
 
@@ -661,12 +661,12 @@ Is used to defer or delegate some or all steps of an algorithm to a subclass.
 Enables you to change or configure the functionality of a specific object, such as adding buttons or functionality to a scrollbar, or defining exactly how to model sandwich orders from two different customers from the same ingredients.
 
 
-#### Flyweight pattern
+### Flyweight pattern
 
 Useful in situtations where you have several objects, and many may represent the same value. It can be possible to share the values as long as the objects are immutable.
 
 
-#### Singleton Pattern
+### Singleton Pattern
 
 A singleton is a class that allows only one instance to be created. It is often used to create a single point of entry to a third party, such as a database or a web service, so that a number of connections are managed in one place.
 
