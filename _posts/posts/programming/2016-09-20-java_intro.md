@@ -19,6 +19,130 @@ authors:
 ## Advance Java Overview
  This overview is designed with the intention of briefly reviewing some core aspects of Java that might be relevant to a java programming interview.
 
+## Primitive
+
+The JVM treats primitives differently from reference types (objects). Primitives always have a value, they can never be null.
+
+
+### Primitive table
+* boolean - 1 bit
+* short - 16 bits
+* int - 32 bits
+* long - 64 bits
+* float - 32 bits
+* double - 64 bits
+* char  - 16 bits
+
+Note char is unsigned so the range of possible values is from 0 - 65,535 because chars represent unicode values.
+
+## objects
+
+ objects have states and behaviors. Example, a car has a states - color, name, brand. and it has behaviors: reverse, drive, park.
+
+
+### final keyword on object references
+
+the value is set on variable definition, and after that, the value stored in that memory location cannot change. Although the objects reference cannot change, the values held within that object CAN change.
+
+
+### visibility modifiers
+
+Visibility modifiers control access to the encapsulated stte of the class and the methods controlling the instance behavior. A variable encapsulated within an object or a method can have its visilibity restricted by one of four definitions.
+
+Note: Private member variables are avaiable only to that class, not even to any subclassess: Private variables are deemed to be necessary for only that type and no other.
+
+* private - least visibile - visible to any instance of that same class, not to subtypes
+* <none> - visible to any class in the same package
+* protected - visibile to any subclassess
+* public - visisible anywhere.
+
+
+### what does static do
+
+static methods and variables are defined as belonging to the class and not specifically to an instance.
+
+They are common to all instances, and are usually accessed through the class name rather than a specific instance.
+
+### What is Polymorphism
+
+Polymorphism allows you to make a definition for a certain type of behavior, and have many different classes implement that behavior.
+
+Inheritence allows you to derive the behavior and definition of a class from a superclass.
+
+
+## Java Arrays
+
+They can be treated as objects, because array sare objets, this means arrays are passed by reference, so anything holding a reference to that array can mutate in some way.  This is often the point of confusion for some.
+
+```
+final int[] myArr = new int[] {0,1,2,3};
+int[] arrRef = myArr;
+
+arrRef[2]=1337;
+
+assert(myArr[2]==1337);
+```
+
+## Interning
+
+Any repetition of a String literal can be referenced from the same constant in the pool, this is known as String interning.
+
+
+## Reifed
+
+Reifed means being available at run time. Java's generic types are not reified. This means all the type information the compiler uses to check any implementing code is using generic parameters correctly is not part of the .class file definition.
+
+
+## Autoboxing
+
+The process of converting Float, Integer, or Boolean to their primitive counterpart is called unboxing. It may throw a nullreferencepointer error if the value is null.
+
+## Handling Exceptions
+
+Any class that can be thrown extends Throwable. Throwable has two direct subclasses:  Error and Exception
+
+ It's the responsibility of the programmer to handle exceptions, while errors may not be recovered from for example: outofmemoryerror
+
+
+## Try with resources
+
+Before try-with-resources was introduced, the programmer would have to explicitly close the FileStreams.  However with try-with-resources, it automatically closes the filestreams for you.
+
+## Immutable
+
+If you have a final class with no accessible setters, and all fields were private, you could be inclined to think its immutable, but this is not the case because they can be manipulated with Reflection API.
+
+So it's necessary to use private and final to make them immutable.
+
+##  Which classes do other collections api inherit from
+
+They can be split into : SETS, Lists, and Maps.
+
+## Why was HashMap introduced when we already had Hashtable
+
+When the collections framework was written, Hashtable was redesigned for the Collections framework.
+
+The hashtable is synchronized, which work effective for parallel work. Provides a significant performance hit due to this overhead for any single-threaded work.
+
+HashMap is not synchrnoizd.    
+
+## class
+
+a class can be defined as a template that describes the behavior or state that the object of its type supports.
+
+### local variables
+
+ variables defined inside methods, constructors or blocks are called local varaibles.
+
+### instance variables
+
+Instance variables are variables within a class but outside any method. These variables are initialized when the class is instantiated.
+
+
+### class variables
+
+class varaibles are variables declaredd within a class, outside any method with the static keyword.
+
 ## Effect of keeping a constructor private (inheritance)
  By keeping a constructor private, the class cannot be inherited from. It forces the sub-class to explicitly make a call to non-private super class constructor. Places you might consider using a private constructor:
 
@@ -32,6 +156,8 @@ The _Arrays_ and _Collections_ have several _overloaded_ sort methods. These sor
 
 * one that takes an array as a parameter
 * one that takes a Comparator object.
+
+By convention Comparable interface is used for natural ordering, and comparator is used to give exact control over the ordering.
 
 ### Comparable
 Comparable interface is used for natural ordering. String class implements the Comparable interface, so the sorting works as you would expect however if a the type being sorted does not implement Comparable then it will throw a ClassCastException. You can think of a comparable object as being capable of comparing itself with another object. This class must implement _java.lang.Comparable_ interface in order to be able to compare its instances.
@@ -181,9 +307,71 @@ Notes about Java's LinkedList:
 * manipulation is usually relatively fast, especially when operating on head however not so much on insertion towards the end unlike Arraylists
 * can be used as stack or queue
 
+### Queue and Deque
+
+A queue is a "first in, first out" data structure
+
+A deque (pronounced 'deck' ) is an extension of Queue, and allows addition and removal from either end of the data structure.
+
 ### Trees
 
-_NOTE: This section has not been implemented._
+A tree is a data strucutre in which alement can be succeeded by a number of different elements, known as children.
+
+A binary search tree - elements les than the value of a given node are children on the left, and elements greater ten the value of a given node are children of the right.
+
+
+Tree definition
+
+```
+public class TreeExample<E extends Comparable>{
+  private E value;
+  private TreeExample<E> left;
+  private TreeExample<E> right;
+}
+//searching  binary search tree
+public boolean search(final E toFind){
+  if(toFind.equals(value)){
+    return true;
+  }
+
+  if(toFind.compareTo(value) < 0 && left != null){
+    return left.search(toFind);
+  }
+
+  return right != && right.search(toFind);
+}
+
+public void insert(final E toInsert){
+  if(toInsert.compareTo(value) < 0){
+    if(left == null){
+      left = new TreeExample<>(toInsert, null, null);
+    }
+    else{
+      left.insert(toInsert);
+    }
+  else{
+    if(right == null){
+      right = new TreeExample<>(toInsert, null, null);
+    }
+    else{
+      right.insert(toInsert);
+    }
+  }
+  }
+}
+
+```
+
+#### AVL Trees
+
+A specific implementation of a binary search tree, which enforces that for every node, the difference in depth for each child is at most one. After each insertion or deletion of a node, the tree checks if it is still balanced, and subsequently rotates the nodes of values where the property of the AVL tree does not hold.
+
+When a tree is balanced, searching, inserting, and deleting has the  size O (logn)
+
+
+#### Binary Heap
+
+A balanced tree with the property that children are greater than their parent. The heap property defines that the smallest element is the root.  Heaps are especially useful for priority queues or any time you require quick access to the sallest element of a collection.
 
 ### Maps
 
@@ -344,6 +532,168 @@ Hiding internal details and showing functionlity.
 ### Encapsulation
 
 Binding code and data together into a single unit.
+
+
+## Sorting
+
+### Bubble sort
+
+```
+for i between 0 and (array length - 2)
+  if(array (i +1) < array(i))
+     switch(array(i) and array(i+1))
+```
+
+### Insertion Sorting
+
+```
+final List<Integer> sortedList = new LinkedList<>();
+
+originalList: for (Integer number : numbers){
+  for(int i = 0; i < sortedList )
+}
+```
+
+### quick sorting
+
+```
+method quicksort(list 1):
+  if l.size < 2:
+    return 1;
+
+let pivot = l(0)
+let lower = new list
+let higher = new list
+for each element e in between l(0) and the end of the list:
+   if e < pivot:
+    add e to lower
+  else add e to higher
+
+let sortedLower = quicksort(lower)
+let sortedHigher = quicksort(higher)
+return sortedlower + pivot + sortedHigher
+```
+
+### merge sort
+
+```
+method mergesort(list l):
+   if list.size < 2:
+    return l;
+
+  let middleIndex = l.size() /2;
+  let leftlist = elements between l(0) and l(middleIndex -1);
+  let rightlist = elements between l(middleIndex) and l(size - 1)
+
+  let sortedleft = mergesort(leftlist)
+  let sortedright = mergesort(rightlist)
+  return merge(sortedleft, sortedright)
+
+method merge(list l, list r):
+  let leftptr = 0
+  let right ptr =0
+  let toreturn = new list
+
+  while(leftptr < l.size and rightptr < r.size)
+    if(l(leftptr) < r(rightptr))
+      toreturn.add(l(leftptr))
+      leftptr++
+    else:
+      toreturn.add(r(rightptr));
+      rightptr++;
+    while(leftptr < 1.size)
+      toreturn.add(l(leftptr))
+      leftptr++
+    while(rightptr < r.size)
+      toreturn.add(r(rightptr))
+      rightptr++;
+
+    return toreturn
+```
+
+### binary search
+
+```
+method binarySearch(list l, element e):
+  if l is empty
+    return false
+
+  let value = l(l.size /2)
+
+  if(value == e)
+    return true
+  if (e < value):
+    return binarySearch(elements between l(0) and l(l.size / 2  -1))
+  else
+    return binarySearch(elements between l(l.size / 2 +1) and l(l.size))
+```
+
+### Design Patterns
+
+Software design patterns use one or more objets together to solve a common problem.
+
+#### Builder Pattern
+
+Necessary when you create an object that has many fields. Example: Pet object: Animal type, pet name, owner name, address, dob, color, size, etc.
+
+One approach would be to not use a constructor at all, simply use setter methods on the Pet object instead. The downside to this approach is you can create an object that are not valid.
+
+With a builder pattern you can mitigate this problem. You can create a compannion object, called a builder,  which will construct legal objects.
+
+
+#### Strategy Pattern
+
+Enables you to easily swap specific implementation details of an algorithm without requiring a complete rewrite, such as swapping during runtime.
+
+This is often used with dependency injection to allow implementations to be swapped out for test-specific.
+
+An example of this interface is a logger implementation that is not concerned about if you log to a console or to a file, you can easily swap between the two during runtime or during production. This is done by implementing the Logging interface, rather then writing a specific interface.
+
+Using this Strategy allows you to defer decisions about which implementation to use until run time.
+
+#### Template Pattern
+
+Is used to defer or delegate some or all steps of an algorithm to a subclass.
+
+
+#### Decorator Pattern
+
+Enables you to change or configure the functionality of a specific object, such as adding buttons or functionality to a scrollbar, or defining exactly how to model sandwich orders from two different customers from the same ingredients.
+
+
+#### Flyweight pattern
+
+Useful in situtations where you have several objects, and many may represent the same value. It can be possible to share the values as long as the objects are immutable.
+
+
+#### Singleton Pattern
+
+A singleton is a class that allows only one instance to be created. It is often used to create a single point of entry to a third party, such as a database or a web service, so that a number of connections are managed in one place.
+
+This is an example of lazy-initilization
+
+```
+public class Singleton {
+  private static Singleton INSTANCE;
+  public static Singleton getInstance(){
+    if(INSTANCE == NULL){
+      INSTANCE  = new Singelton();
+    }
+    return INSTANCE;
+  }
+}
+```
+
+This is  not necessary thread safe. A better approach is using the Singleton as a single-element Enum, the JVM gurantees taht only one instance will ever be created. Note that singleton's are generally difficult to test in isolation especially when it performs heavy operations, such as writing to a data base.  Singletons work best in specialized applications such as GUI on a mobile application. If you are building a large scale app, singleton's are best avoided since it will create a bottleneck.
+
+```
+public enum SingletonEnum {
+  INSTANCE;
+  public void singletonFunction(){
+   //stuff   
+  }
+}
+```
 
 ## Sources
 Below are a list of sources that have been used.
