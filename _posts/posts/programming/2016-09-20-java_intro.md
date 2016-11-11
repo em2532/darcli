@@ -695,6 +695,53 @@ public enum SingletonEnum {
 }
 ```
 
+## Understanding the JVM
+
+### How is memory allocated
+
+The new keyword allocates memory on the Java heap. The heap is the main pool of memory accessible to the whole of the application.
+If there is not enough memory available to allocate for that object, the JVM tries to reclaim memory from the heap using the garbage collector.
+
+#### Generations
+
+As objects survive more garbage collections, they are promoted to different generations. Older generations are not garbage collected as often.
+
+
+### Difference  between stack and heap
+
+
+Memory is split into two major parts, the stack and the heap.
+
+The stack is the place where any primitive values, references to objects, and methods are stored.  The lifetime of variables on the stack is determined by the scope of the code.
+
+When you call a method, those declared variables are placed on top of the stack.
+
+### How can you define the size of the heap for the JVM
+
+When starting the jvm you can specify the maximum heap with the command-line flag -Xmx and a size.
+
+### Java Memory Leaks
+
+A common misconception in Java is that because of the garbage collection, memory leaks are not possible, however excessive memory usage can occur if you are not careful.
+
+### WeakReference
+
+Is a generic container class, and when the contained instance has no strong references it is elgiible for garbage collection.
+
+### What is a native method?
+
+Regular Java class definitions are compiled to bytecode, held in class files.
+
+Native methods are when you need to run some platform-specific code, such as making an operating system call.
+
+### Shutdown hooks
+
+When JVM terminates, it is possible to have some code run before it exits, similar to finalize method running before an object is collected.
+
+Shutdown hooks are references to Thread objects, you can add a new reference by calling the addShutDownHook method on the current Runtime instance. 
+
+
+
 ## Sources
 Below are a list of sources that have been used.
 [StackOverflow:purpose of final, finally, finalize](http://stackoverflow.com/questions/7814688/in-java-what-purpose-do-the-keywords-final-finally-and-finalize-fulfil) ,
